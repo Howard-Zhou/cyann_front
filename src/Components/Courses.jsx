@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //import '../css/App.css';
 import '../css/main.css';
 
-//
+
 import face from '../../picture/face.jpg';
 import searchicon from '../../picture/searchicon.png';
 import plus from '../../picture/plus.png';
