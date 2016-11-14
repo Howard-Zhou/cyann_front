@@ -9,6 +9,7 @@ import face from '../../picture/face.jpg';
 import searchicon from '../../picture/searchicon.png';
 import plus from '../../picture/plus.png';
 
+
 class Courses extends Component {
     constructor(props) {
         super(props);
@@ -98,7 +99,7 @@ class Courses extends Component {
                                <ul id="aaa">
                                    {this.state.postSource.map(function(post,i){
                                        return(
-                                        <li id="b"  onClick={this.showContent.bind(this)}><span><a href="#" onClick={()=>this.getContent(post._id)}>
+                                        <li id="b" onClick={this.showContent.bind(this)}><span><a href="#" onClick={()=>this.getContent(post._id)}>
                                         <dt id="post_title"> {post.title}</dt>
                                         <dd id="post_body">{post.content}</dd></a></span>
                                         </li>
@@ -119,7 +120,9 @@ class Courses extends Component {
                            <input id="searchbar" placeholder="Search.."></input>
                            <img src={searchicon} id="picture" style={{width:25,height:25,top:23,left:145}}/>
                            <p id="post_h2">Post List</p>
-                        </div>})
+
+
+                      </div>})
         this.setState({fontWeight1:'300'})
         this.setState({fontWeight2:'900'})
         this.setState({fontWeight3:'300'})
@@ -263,10 +266,17 @@ postComment=()=>{
                     <p id="contentContent">
                         {this.state.postContent}
                     </p>
-                      <ul id="commentList">
+                  <ul id="commentList">
                     {this.state.commentsViewing.map(function(comment,i){
                         return(
-                            <li id="commentContent">{comment.content}</li>
+                            <li id="commentContent">
+                                <p>student's comment</p>
+                               <h2></h2>
+                               {comment.content}
+                              <h2></h2>
+                              <p>good question</p>
+                            </li>
+
                         )
                     },this)}
                       <textarea onChange={this.updateComment.bind(this)}  id="newComment" cols="70" rows="7" ></textarea>
@@ -283,16 +293,14 @@ postComment=()=>{
                     <input onChange={this.updateQuestionTitle.bind(this)} type="text"  id="newPost_title"/>
                     <textarea onChange={this.updateQuestionContent.bind(this)}  id="newPost_content" cols="70" rows="20" ></textarea>
                     <button id="newPost_submit" onClick={()=>this.postQuestion()}>submit</button>
-                    <button id="newPost_cancel" >cancel</button>
+                    <button id="newPost_cancel">cancel</button>
                 </div>
             )
         }
         if(this.state.ifShowQuestion){
             return(
                 <div>
-                    <PostWithDisplay
-                        title="What is the meaning of life, the universe and everything?"
-                        content= "The number 42 is, in The Hitchhiker's Guide to the Galaxy by Douglas Adams, the 'Answer to the Ultimate Question of Life, the Universe, and Everything', calculated by an enormous supercomputer named Deep Thought over a period of 7.5 million years. Unfortunately, no one knows what the question is."/>
+                    <p>welcome to Cyann</p>
                 </div>
             )
         }
@@ -410,45 +418,45 @@ postComment=()=>{
         );
     }
 }
-
-class PostWithDisplay extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            something: ''
-        }
-    }
-    componentWillMount() {
-
-    }
-    componentDidMount() {
-
-    }
-    _handleImageChange(e) {
-        e.preventDefault();
-
-        let reader = new FileReader();
-        let file = e.target.files[0];
-
-        reader.onloadend = () => {
-          this.setState({
-            file: file,
-            imagePreviewUrl: reader.result
-          });
-        }
-
-        reader.readAsDataURL(file)
-    }
-    render() {
-        return (
-            <div id="PostWithDisplay">
-                <h1 id="PostWithDisplay_title">{this.props.title}</h1>
-                <p id="PostWithDisplay_content" >{this.props.content}</p>
-                <input className="fileInput" type="file" onChange={(e)=>this._handleImageChange(e)} />
-                <textarea ref="newText" defaultValue="new text" id="form-control"></textarea>
-            </div>
-        );
-    }
-}
+//
+// class PostWithDisplay extends Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             something: ''
+//         }
+//     }
+//     componentWillMount() {
+//
+//     }
+//     componentDidMount() {
+//
+//     }
+//     _handleImageChange(e) {
+//         e.preventDefault();
+//
+//         let reader = new FileReader();
+//         let file = e.target.files[0];
+//
+//         reader.onloadend = () => {
+//           this.setState({
+//             file: file,
+//             imagePreviewUrl: reader.result
+//           });
+//         }
+//
+//         reader.readAsDataURL(file)
+//     }
+//     render() {
+//         return (
+//             <div id="PostWithDisplay">
+//                 <h1 id="PostWithDisplay_title">{this.props.title}</h1>
+//                 <p id="PostWithDisplay_content" >{this.props.content}</p>
+//                 <input className="fileInput" type="file" onChange={(e)=>this._handleImageChange(e)} />
+//                 <textarea ref="newText" defaultValue="new text" id="form-control"></textarea>
+//             </div>
+//         );
+//     }
+// }
 
 export default Courses;

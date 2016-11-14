@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import '../css/App.css';
 
 import iphone from '../../picture/iphone.png';
-import FacebookLogin from 'react-facebook-login';
+//import FacebookLogin from 'react-facebook-login';
 
 class Home extends Component {
   constructor(props) {
