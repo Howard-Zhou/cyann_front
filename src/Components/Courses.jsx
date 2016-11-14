@@ -1,13 +1,15 @@
-//
 import React, { Component } from 'react';
 //import logo from '../logo.svg';
-//import '../css/App.css';
+import '../css/App.css';
 import '../css/main.css';
-
+import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
+import FaSignOut from 'react-icons/lib/fa/sign-out';
+import FaCog from 'react-icons/lib/fa/cog';
+import FaUser from 'react-icons/lib/fa/user';
+import FaSearchPlus from 'react-icons/lib/fa/search-plus';
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 
 import face from '../../picture/face.jpg';
-import searchicon from '../../picture/searchicon.png';
-import plus from '../../picture/plus.png';
 
 
 class Courses extends Component {
@@ -36,7 +38,10 @@ class Courses extends Component {
             postContent:'',
             postViewing:'',
             commentsViewing:[],
-            commentContent:''
+            commentContent:'',
+            courseName:[],
+            author:'',
+            createdAt:'',
 
         }
     }
@@ -46,13 +51,23 @@ class Courses extends Component {
     }
     componentDidMount(){
       this.getPosts()
+      this.getUsername()
+    }
+
+    getUsername(){
+      fetch("http://localhost:8080/api/users/5823aad92853c404061b8673")
+      .then((response) => response.json())
+      .then((responseData) => {
+          //console.log(responseData.data)
+          this.setState({userName:responseData.data.name})
+      })
     }
 
     getPosts(){
       fetch("http://localhost:8080/api/courses/5823af0196ca1b048113562a/posts")
       .then((response) => response.json())
       .then((responseData) => {
-          //console.log(responseData.data)
+          console.log(responseData.data)
           this.setState({postSource:responseData.data})
       })
     }
@@ -88,11 +103,11 @@ class Courses extends Component {
                        <div id="student_post_list">
                            <input id="searchbar" placeholder="Search.."></input>
 
-                           <img src={searchicon} id="picture" style={{width:25,height:25,top:23,left:145}}/>
+                           <FaSearchPlus style={{position:"absolute",width:25,height:25,top:23,left:145}}/>
 
                            <button id="new_post"  type="button" onClick={this.updateList.bind(this)}>New Post</button>
 
-                           <img src={plus} id="picture" style={{width:23,height:23,top:23,left:295}}/>
+                           <FaPlusCircle style={{position:"absolute",width:23,height:23,top:23,left:295,color:'cyann'}}/>
 
                            <div>
                                <p id="post_h2">Post List</p>
@@ -118,7 +133,7 @@ class Courses extends Component {
         this.setState({selection:
                        <div id="prof_post_list">
                            <input id="searchbar" placeholder="Search.."></input>
-                           <img src={searchicon} id="picture" style={{width:25,height:25,top:23,left:145}}/>
+                           <FaSearchPlus style={{position:"absolute",width:25,height:25,top:23,left:145}}/>
                            <p id="post_h2">Post List</p>
 
 
@@ -250,31 +265,38 @@ postComment=()=>{
            console.log(responseData.data)
          this.setState({postViewing:responseData.data._id})
          this.setState({postTitle:responseData.data.title})
+         this.setState({author:responseData.data.author.name})
          this.setState({postContent:responseData.data.content})
          this.setState({commentsViewing:responseData.data.comments})
+         this.setState({createdAt:responseData.data.createdAt})
         })
     }
 
     renderList=()=>{
         if(this.state.ifShowContent){
             return(
-              <div>
+              <div id="postPage">
+                <div id="postTop">
                     <p id="contentTitle">
                        {this.state.postTitle}
                     </p>
 
-                    <p id="contentContent">
+                    <pre id="contentContent">
                         {this.state.postContent}
-                    </p>
+                    </pre>
+
+                    <p> Posted by {this.state.author} Created at {this.state.createdAt}</p>
+                  </div>
                   <ul id="commentList">
                     {this.state.commentsViewing.map(function(comment,i){
                         return(
                             <li id="commentContent">
-                                <p>student's comment</p>
+                                <p style={{fontSize:"10px"}}>student's comment</p>
                                <h2></h2>
                                {comment.content}
                               <h2></h2>
-                              <p>good question</p>
+                              <p style={{fontSize:"10px"}}>good question<FaThumbsOUp id ="thumb" style={{fontSize:"20px"}}/></p>
+
                             </li>
 
                         )
@@ -313,10 +335,13 @@ postComment=()=>{
 
                     <div id="portfolio_bar">
                         <p id="name">{this.state.userName}</p>
+                        <img src={face} id="picture" style={{position:"absolute",top:20,left:40,width:120,height:120}}/>
+                        <FaCog id="setting" />
+                        <FaSignOut id="signout"/>
+                        <FaUser id="user"/>
 
                     </div>
 
-                    <img src={face} id="picture" style={{top:30,left:40,width:120,height:120}}/>
 
                     <div style={{height:window.innerHeight,width:window.innerWidth/6,backgroundColor:'#17B3C1'}}>
                         <ul id="course_list">
@@ -360,43 +385,8 @@ postComment=()=>{
                                     </button>
                                 </ul>
                             </div>
-                            <ul id="course" button type="button"  data-toggle="collapse" data-target="#content2"
-                                onClick={this.setBackground2}
-                                style={{background:this.state.background2}}>
-                                ELEC331
-                            </ul>
-                            <div id="content2" className="collapse">
-                                <ul>
-                                    <button className="post">
-                                        <span
-                                            onClick={this.setFontWeight1}
-                                            style={{fontWeight:this.state.fontWeight1}}>
-                                            Student Post
-                                        </span>
-                                    </button>
-                                    <button className="post">
-                                        <span
-                                            onClick={this.setFontWeight2}
-                                            style={{fontWeight:this.state.fontWeight2}}>
-                                            Professor Post
-                                        </span>
-                                    </button>
-                                    <button className="post">
-                                        <span
-                                            onClick={this.setFontWeight3}
-                                            style={{fontWeight:this.state.fontWeight3}}>
-                                            Homework
-                                        </span>
-                                    </button>
-                                    <button className="post">
-                                        <span
-                                            onClick={this.setFontWeight4}
-                                            style={{fontWeight:this.state.fontWeight4}}>
-                                            Lecture notes
-                                        </span>
-                                    </button>
-                                </ul>
-                            </div>
+
+
 
                         </ul>
                     </div>

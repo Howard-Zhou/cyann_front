@@ -1,3 +1,12 @@
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: keep-all;       /* Internet Explorer 5.5+ */
+    background-color: transparent;
+    border: none;
+}
 #searchbar{
     position: absolute;
     width: 130px;
@@ -60,35 +69,50 @@
     z-index: 1;
     left: 0;
     top: 90;
-    width: 200px;
+    width: 210px;
     height: 220px;
     box-shadow: 0px 10px 20px 0px #60848C;
 }
 
-#Nav{
-    position: absolute;
-    top: 0;
-    left:320;
+#signout{
+  font-size: 20px;
+  position: absolute;
+  top:180px;
+  left:140px;
+  color: white;
 }
-#searchicon{
-    position: absolute;
-    top: 10;
-    left:355;
+#signout:hover{
+  color:black;
+}
+#setting{
+  font-size: 20px;
+  position: absolute;
+  top:180px;
+  left:90px;
+  color: white;
+}
+#setting:hover{
+  color:black;
+}
+#user{
+  font-size: 20px;
+  position: absolute;
+  top:180px;
+  left:40px;
+  color: white;
+
+}
+#user:hover{
+  color:black;
 }
 
 #name{
   color:white;
   position: absolute;
-  top:170px;
-  left:40px;
+  top:145px;
+  left:50px;
   font-size: 15px;
-
 }
-#picture{
-  z-index: 1;
-  position:absolute;
-}
-
 .post {
   border-radius: 4px;
   background-color: transparent;
@@ -316,66 +340,61 @@ td {
     box-shadow:  0px 1px 1px 0px grey;
 
 }
+#postPage{
+    position: absolute;
+    top:10px;
+    left:670px;
+    overflow: scroll;
+    height:650px;
+    width: 600px;
+}
+#postTop{
+  width:560px;
+  height: auto;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px #60848C;
+}
 
 #contentTitle{
-    position: absolute;
+    //position: absolute;
     top:20px;
     left:670px;
     font-size: 20px;
     color:black;
-    width:570px;
+    width:560px;
     border-bottom-style: inset;;
 
 }
 #contentContent{
-    position: absolute;
+    //position: absolute;
     top:70px;
     left:670px;
     font-size: 15px;
     color:black;
-    width:570px;
+    width:560px;
     text-align: left;
     //height:250px;
-    overflow: scroll;
+    //overflow: scroll;
     border-bottom-style: double;
-    margin-bottom: 30px;
+    //margin-bottom: 30px;
     min-height: 100px;
-    max-height: 250px;
+    //max-height: 250px;
     padding-bottom: 20px;
-}
-#newComment{
-    position: relative;
-    top:20px;
+    padding: 10px;
+    word-wrap: break-word;
 
 }
-#newComment_submit{
-    position: relative;
-    top:20px;
-    left:0px;
-}
-#newComment_submit:hover {
-    font-weight: bold;
-    box-shadow:  0px 1px 1px 0px grey;
 
-}
-#newComment_cancel{
-    position: relative;
-    top:20px;
-    left:50px;
-}
-#newComment_cancel:hover {
-    font-weight: bold;
-    box-shadow:  0px 1px 1px 0px grey;
-
-}
 #commentList{
-    position: absolute;
-    margin-top:350px;
-    left:670px;
+    position: relative;
+    margin-top:30px;
+    //left:670px;
     width:570px;
     list-style-type: none;
     height:320px;
-    overflow: scroll;
+    //overflow: scroll;
 }
 #commentContent{
   width:560px;
@@ -390,4 +409,34 @@ td {
   word-wrap: break-word;
   padding: 10px;
 }
+#newComment{
+    position: relative;
+    top:20px;
+
+}
+#newComment_submit{
+    position: relative;
+    top:20px;
+    left:0px;
+    margin-bottom: 20px;
+}
+#newComment_submit:hover {
+    font-weight: bold;
+    box-shadow:  0px 1px 1px 0px grey;
+
+}
+#newComment_cancel{
+    position: relative;
+    top:20px;
+    left:50px;
+}
+#newComment_cancel:hover {
+    font-weight: bold;
+    box-shadow:  0px 1px 1px 0px grey;
+}
+
 h2 { width:100%; border-bottom: 1px solid #000; line-height:0.1em; margin:10px 0 5px; }
+
+#thumb:hover{
+  color:red;
+}
